@@ -3,7 +3,7 @@ import React from 'react'
 export default function Cards() {
   return (
     <div>
-        <div className="card mt-3" style={{ width: "18rem" }}>
+        <div className="card m-3" style={{ width: "19rem" }}>
           <img className="card-img-top" src="https://source.unsplash.com/random/480x480/?barbeque" alt="Card  cap" />
           <div className="card-body">
             <h5 className="card-title">Card title</h5>
@@ -26,7 +26,7 @@ export default function Cards() {
                 </option>
               </select>
 
-              <div className="d-inline h-100 fs-5">Total price</div>
+              <div className="d-inline h-100 fs-5">Totalprice</div>
             </div>
           </div>
         </div>

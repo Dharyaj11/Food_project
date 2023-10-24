@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const mongoURI="mongodb+srv://dharyajasuja2003:1234567890@cluster0.yv4dw2i.mongodb.net/gofoodmern?retryWrites=true&w=majority";
+const mongoURI = "mongodb+srv://dharyajasuja2003:1234567890@cluster0.yv4dw2i.mongodb.net/gofoodmern?retryWrites=true&w=majority";
 // const mongoDB=()=>{
 
 //     // mongoose.connect(mongoURI,()=>{
@@ -14,15 +14,25 @@ const mongoURI="mongodb+srv://dharyajasuja2003:1234567890@cluster0.yv4dw2i.mongo
 // }
 // }
 const mongoDB = async () => {
-    try {
-      await mongoose.connect(mongoURI);
-      console.log('Connected!');
-      let fetched_data = mongoose.connection.db.collection("food_items");
-      let data=await fetched_data.find({}).toArray() 
-    //   console.log(data);
-    } catch (error) {
-      console.log('err: ', error);
-    }
-  };
+  try {
+    await mongoose.connect(mongoURI);
+    console.log('Connected!');
+    let fetched_data = mongoose.connection.db.collection("food_items");
+    let data = await fetched_data.find({}).toArray(async function(err,data){
+      let foodCategory=mongoose.connection.db.collection("foodCategory");
+      foodCategory.find({}).toArray(function(err,catdata){
+        if(err) console.log(err);
+        else{
 
-module.exports=mongoDB;
+          global.food_items = data;
+          global.foodCategory = catdata;
+        }
+      })
+    })
+      // console.log(data);
+  } catch (error) {
+    console.log('err: ', error);
+  }
+};
+
+module.exports = mongoDB;
