@@ -1,6 +1,6 @@
 import React,{useEffect, useRef, useState} from 'react'
 
-import { useDispatchCart,useCart } from './ContentReducer';
+import { useDispatchCart,useCart } from './ContextReducer';
 
 export default function Cards(props) {
   let dispatch=useDispatchCart();
@@ -12,8 +12,30 @@ export default function Cards(props) {
   const [size, setsize] = useState("");
 
   const handleAddToCart=async ()=>{
+    let food = []
+    for (const item of data) {
+      if (item.id === props.foodItem._id) {
+        food = item;
+
+        break;
+      }
+    }
+    if(food !== []){
+      if(food.size === size){
+        await dispatch({ type:"UPDATE",id:props.foodItem._id,qty:qty,price:finalPrice})
+        return
+      }else if(food.size !== size){
+        await dispatch({type:"ADD",id:props.foodItem._id,name:props.foodItem.name,price:finalPrice,qty:qty,size:size,img:props.foodItem.img})
+        console.log("Size different so simply ADD one more to the list")
+        return
+
+
+      }
+      return
+    }
+
     await dispatch({type:"ADD",id:props.foodItem._id,name:props.foodItem.name,price:finalPrice,qty:qty,size:size,img:props.foodItem.img})
-    console.log(data)
+    // console.log(data)
   }
   let finalPrice=qty*parseInt(options[size]);
   useEffect(()=>{
