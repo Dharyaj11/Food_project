@@ -35,7 +35,7 @@ export default function Home() {
           id="carouselExampleFade"
           className="carousel slide carousel-fade"
           data-bs-ride="carousel"
-          style={{ objectFit: "contain !important" }}
+          style={{ objectFit: "contain !important", objectFit:"fill" }}
         >
           <div className="carousel-inner" id="carusel">
             <div class="carousel-caption d-none d-md-block">
@@ -53,21 +53,21 @@ export default function Home() {
                 </button> */}
               </div>
             </div>
-            <div className="carousel-item active">
+            <div className="carousel-item active" data-bs-interval="3000">
               <img
                 src="https://source.unsplash.com/random/480x480/?burger"
                 className="d-block w-100 img-fluid"
                 alt="..."
               />
             </div>
-            <div className="carousel-item">
+            <div className="carousel-item" data-bs-interval="3000">
               <img
                 src="https://source.unsplash.com/random/480x480/?pizza"
                 className="d-block w-100 img-fluid"
                 alt="..."
               />
             </div>
-            <div className="carousel-item">
+            <div className="carousel-item" data-bs-interval="3000">
               <img
                 src="https://source.unsplash.com/random/480x480/?dumpling"
                 className="d-block w-100 img-fluid"

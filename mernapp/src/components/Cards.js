@@ -5,10 +5,14 @@ export default function Cards(props) {
   let options=props.options;
   let priceOptions=Object.keys(options);
 
+  const handleAddToCart=()=>{
+    
+  }
+
   return (
     <div>
         <div className="card m-3" style={{ width: "18.75rem" }}>
-          <img className="card-img-top" src={props.imgSrc} alt="Card  cap" />
+          <img className="card-img-top" src={props.imgSrc} alt="Card  cap" style={{height:"200px", objectFit:"fill"}}/>
           <div className="card-body">
             <h5 className="card-title">{props.foodName}</h5>
             
@@ -29,6 +33,8 @@ export default function Cards(props) {
 
               <div className="d-inline h-100 fs-5">Totalprice</div>
             </div>
+            <hr/>
+            <button className='btn btn-success justify-content ms-2' onClick={handleAddToCart}>Add to Cart</button>
           </div>
         </div>
       </div>

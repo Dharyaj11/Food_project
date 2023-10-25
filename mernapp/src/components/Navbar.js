@@ -1,29 +1,72 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link,useNavigate } from "react-router-dom";
 
 export default function Navbar() {
-    return (
-        <div>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-success" >
-                <Link className="navbar-brand fs-1"  to="/">GoFood</Link>
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav">
-                        <li className="nav-item ">
-                            <Link className="nav-link" to="/">Home <span className="sr-only">(current)</span></Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/login">Login</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/signup">SignUp</Link>
-                        </li>
-                        
-                    </ul>
-                </div>
-            </nav>
+    const navigate=useNavigate();
+    const handleLogOut=()=>{
+        localStorage.removeItem("authToken");
+        navigate('/login')
+    }
+
+  return (
+    <div>
+      <nav className="navbar navbar-expand-lg navbar-dark bg-success">
+        <Link className="navbar-brand fs-1" to="/">
+          GoFood
+        </Link>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav me-auto mb-2">
+            <li className="nav-item ">
+              <Link className="nav-link active fs-5" to="/">
+                Home <span className="sr-only">(current)</span>
+              </Link>
+
+            </li>
+            {
+                (localStorage.getItem("authToken"))?
+                <li className="nav-item ">
+              <Link className="nav-link active fs-5" to="/">
+                My Orders <span className="sr-only">(current)</span>
+              </Link>
+
+            </li>:""
+            }
+          </ul>
+            {
+                (!localStorage.getItem("authToken"))?
+
+          <div className="d-flex">
+            <Link className="btn bg-white text-success mx-2" to="/login">
+              Login
+            </Link>
+            <Link className="btn bg-white text-success mx-2" to="/signup">
+              SignUp
+            </Link>
+          </div>
+          :
+          <div>
+
+          <div className="btn bg-white text-success mx-2">
+            My cart
+          </div>
+          <div className="btn bg-white text-danger mx-2" onClick={handleLogOut}>
+            Log out
+          </div>
+          </div>
+            }
         </div>
-    )
+      </nav>
+    </div>
+  );
 }
