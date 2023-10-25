@@ -1,6 +1,7 @@
 import React,{useState} from "react";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 export default function SignUp() {
 
@@ -37,7 +38,9 @@ export default function SignUp() {
 
   return (
     <>
-
+      <div>
+        <Navbar />
+      </div>
       <div className="container">
         <form onSubmit={handleSubmit}>
           
