@@ -38,7 +38,7 @@ export default function Home() {
           style={{ objectFit: "contain !important", objectFit:"fill" }}
         >
           <div className="carousel-inner" id="carusel">
-            <div class="carousel-caption d-none d-md-block">
+            <div class="carousel-caption d-none d-md-block" style={{zIndex:"10"}}>
               <div class="d-flex justify-content-center" role="search">
                 <input
                   class="form-control me-2"
@@ -118,9 +118,9 @@ export default function Home() {
                       className="col-12 col-md-6 col-lg-3 m-4"
                     >
                       <Cards
-                        foodName={filterItems.name}
+                        foodItem={filterItems}
                         options={filterItems.options[0]}
-                        imgSrc={filterItems.img}
+                        
                       ></Cards>
                     </div>
                   ))
