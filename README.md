@@ -1,2 +1,2 @@
 # Food_project
- leasring mern stack
+ learing MERN stack
